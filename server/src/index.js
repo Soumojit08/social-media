@@ -1,6 +1,12 @@
 import express from "express";
 import dotenv from "dotenv";
 import figlet from "figlet";
+import {
+  clerkClient,
+  clerkMiddleware,
+  getAuth,
+  requireAuth,
+} from "@clerk/express";
 import indexRoutes from "./routes/index.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
@@ -12,11 +18,19 @@ dotenv.config();
 //Middlewares
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use(clerkMiddleware());
 
 // Routes
 app.use("/api", indexRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
+app.get("/protected", requireAuth(), async (req, res) => {
+  const userId = getAuth(req);
+
+  const user = await clerkClient.users.getUser(userId);
+
+  return res.json({ user: user });
+});
 
 //Port
 const PORT = process.env.PORT || 5000;
