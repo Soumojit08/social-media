@@ -1,4 +1,5 @@
 import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/react";
+import { Button } from "@/components/ui/button";
 
 const Navbar = () => {
   return (
@@ -9,10 +10,10 @@ const Navbar = () => {
         <div>
           <Show when="signed-out">
             <SignUpButton mode="modal">
-              <button>sign up</button>
+              <Button>sign up</Button>
             </SignUpButton>
             <SignInButton mode="modal">
-              <button>sign in</button>
+              <Button variant="outline">sign in</Button>
             </SignInButton>
           </Show>
           <Show when="signed-in">
