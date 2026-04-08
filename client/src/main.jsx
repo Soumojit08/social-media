@@ -13,6 +13,11 @@ createRoot(document.getElementById("root")).render(
       <ClerkProvider
         appearance={{
           theme: dark,
+          variables: {
+            colorBackground: "#09090b",
+            colorPrimary: "#e879f9",
+            colorForeground: "#fafafa",
+          },
         }}
       >
         <BrowserRouter>

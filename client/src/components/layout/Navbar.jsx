@@ -5,17 +5,16 @@ import { ModeToggle } from "../shared/mode-toggle";
 const Navbar = () => {
   return (
     <header>
-      <nav className="fixed top-0 inset-x-0 flex items-center justify-between px-4">
+      <nav className="fixed top-0 inset-x-0.5 flex items-center justify-between py-3 px-6 border-b border-border">
         <h1>Societ</h1>
 
-        <div>
+        <div className="flex items-center justify-evenly gap-3">
           <ModeToggle />
           <Show when="signed-out">
-            <SignUpButton mode="modal">
-              <Button>sign up</Button>
-            </SignUpButton>
             <SignInButton mode="modal">
-              <Button variant="outline">sign in</Button>
+              <Button variant="default" size="xl">
+                Sign in
+              </Button>
             </SignInButton>
           </Show>
           <Show when="signed-in">

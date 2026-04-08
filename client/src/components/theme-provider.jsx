@@ -1,15 +1,16 @@
 import { createContext, useContext, useEffect, useState } from "react";
 
 const initialState = {
-  theme: "system",
+  theme: "dark",
   setTheme: () => null,
+  toggleTheme: () => null, // Added this to make your button easier
 };
 
 const ThemeProviderContext = createContext(initialState);
 
 export function ThemeProvider({
   children,
-  defaultTheme = "system",
+  defaultTheme = "dark",
   storageKey = "vite-ui-theme",
   ...props
 }) {
@@ -20,24 +21,23 @@ export function ThemeProvider({
   useEffect(() => {
     const root = window.document.documentElement;
 
-    root.classList.remove("light", "dark");
-
-    if (theme === "system") {
-      const systemTheme = window.matchMedia("(prefers-color-scheme: dark)")
-        .matches
-        ? "dark"
-        : "light";
-
-      root.classList.add(systemTheme);
-      return;
+    // For Tailwind v4, we only need to add/remove the "dark" class
+    if (theme === "dark") {
+      root.classList.add("dark");
+    } else {
+      root.classList.remove("dark");
     }
-
-    root.classList.add(theme);
   }, [theme]);
 
   const value = {
     theme,
     setTheme: (newTheme) => {
+      localStorage.setItem(storageKey, newTheme);
+      setTheme(newTheme);
+    },
+    // This is perfect for your new single-button setup
+    toggleTheme: () => {
+      const newTheme = theme === "light" ? "dark" : "light";
       localStorage.setItem(storageKey, newTheme);
       setTheme(newTheme);
     },
