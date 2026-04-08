@@ -1,8 +1,13 @@
+import { SignInButton } from "@clerk/react";
 
 const App = () => {
   return (
-    <div>App</div>
-  )
-}
+    <div>
+      <SignInButton mode="modal">
+        <button>sign in</button>
+      </SignInButton>
+    </div>
+  );
+};
 
-export default App
+export default App;
