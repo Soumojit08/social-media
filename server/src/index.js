@@ -24,12 +24,15 @@ app.use(clerkMiddleware());
 app.use("/api", indexRoutes);
 app.use("/api/user", userRoutes);
 app.use("/api/auth", authRoutes);
+
 app.get("/protected", requireAuth(), async (req, res) => {
   const userId = getAuth(req);
-
   const user = await clerkClient.users.getUser(userId);
 
-  return res.json({ user: user });
+  return res.json({
+    user: user,
+    message: "authenticated!",
+  });
 });
 
 //Port
