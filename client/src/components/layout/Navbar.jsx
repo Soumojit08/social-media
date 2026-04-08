@@ -1,5 +1,6 @@
 import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/react";
 import { Button } from "@/components/ui/button";
+import { ModeToggle } from "../shared/mode-toggle";
 
 const Navbar = () => {
   return (
@@ -8,6 +9,7 @@ const Navbar = () => {
         <h1>Societ</h1>
 
         <div>
+          <ModeToggle />
           <Show when="signed-out">
             <SignUpButton mode="modal">
               <Button>sign up</Button>
