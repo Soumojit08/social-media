@@ -7,6 +7,7 @@ import {
   getAuth,
   requireAuth,
 } from "@clerk/express";
+import cors from "cors";
 import indexRoutes from "./routes/index.routes.js";
 import userRoutes from "./routes/user.routes.js";
 import authRoutes from "./routes/auth.routes.js";
@@ -16,6 +17,12 @@ const app = express();
 dotenv.config();
 
 //Middlewares
+app.use(
+  cors({
+    origin: process.env.CLIENT_URL,
+    credentials: true,
+  }),
+);
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(clerkMiddleware());
