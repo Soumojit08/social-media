@@ -60,6 +60,8 @@ socialapp/
 │   │   │   ├── user.routes.js
 │   │   │   ├── message.routes.js
 │   │   │   └── notification.routes.js
+|   |   |   |__ index.routes.js
+|   |   |   
 │   │   ├── middlewares/            # Auth, validation, error handling
 │   │   │   ├── auth.middleware.js  # Verify JWT token
 │   │   │   ├── validate.middleware.js # express-validator error handler
