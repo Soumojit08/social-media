@@ -1,20 +1,18 @@
 import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/react";
-import { Button } from "@/components/ui/button";
-import { ModeToggle } from "../shared/mode-toggle";
 
 const Navbar = () => {
   return (
     <header>
-      <nav className="fixed top-0 inset-x-0.5 flex items-center justify-between py-3 px-6 border-b border-border">
+      <nav className="fixed top-0 inset-x-0 flex items-center justify-between px-4">
         <h1>Societ</h1>
 
-        <div className="flex items-center justify-evenly gap-3">
-          <ModeToggle />
+        <div>
           <Show when="signed-out">
+            <SignUpButton mode="modal">
+              <button>sign up</button>
+            </SignUpButton>
             <SignInButton mode="modal">
-              <Button variant="default" size="xl">
-                Sign in
-              </Button>
+              <button>sign in</button>
             </SignInButton>
           </Show>
           <Show when="signed-in">

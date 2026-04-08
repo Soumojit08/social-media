@@ -5,25 +5,17 @@ import App from './App.jsx'
 import { BrowserRouter } from "react-router-dom";
 import { ClerkProvider } from "@clerk/react";
 import { dark } from "@clerk/ui/themes";
-import { ThemeProvider } from "./components/theme-provider";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <ThemeProvider>
-      <ClerkProvider
-        appearance={{
-          theme: dark,
-          variables: {
-            colorBackground: "#09090b",
-            colorPrimary: "#e879f9",
-            colorForeground: "#fafafa",
-          },
-        }}
-      >
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </ClerkProvider>
-    </ThemeProvider>
+    <ClerkProvider
+      appearance={{
+        theme: dark,
+      }}
+    >
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ClerkProvider>
   </StrictMode>,
 );
