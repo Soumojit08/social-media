@@ -1,11 +1,14 @@
-import { SignInButton } from "@clerk/react";
+import Navbar from "./components/layout/Navbar";
+import { Routes, Route } from "react-router-dom";
+import Home from "./pages/feed/Home";
 
 const App = () => {
   return (
     <div>
-      <SignInButton mode="modal">
-        <button>sign in</button>
-      </SignInButton>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+      </Routes>
     </div>
   );
 };
