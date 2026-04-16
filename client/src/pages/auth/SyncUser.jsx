@@ -20,7 +20,7 @@ const SyncUser = () => {
         email: user.emailAddresses[0].emailAddress,
         fullName: user.fullName,
         hasImage: user.hasImage,
-        imageId: user.imageUrl,
+        imageUrl: user.imageUrl,
       });
     };
     sync();
