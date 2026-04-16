@@ -1,28 +1,33 @@
+import { getAuth } from "@clerk/express";
 import prisma from "../config/db.js";
 
 export const syncUser = async (req, res) => {
   try {
-    const { userId } = req.auth;
+    const { userId } = getAuth(req);
     const { email } = req.body;
 
-    const user = await prisma.user.findUnique({
+    console.log("Syncing user with ID:", userId, "and email:", email);
+
+    let user = await prisma.user.findUnique({
       where: {
-        clerkId: userId,
+        id: userId,
       },
     });
 
     if (!user) {
       user = await prisma.user.create({
         data: {
-          clerkId: userId,
+          id: userId,
           email,
         },
       });
     }
 
-    res.json({ user: user });
+    res.json({ user: user, message: "User synced successfully" });
   } catch (error) {
     console.error("Error syncing user:", error);
     res.status(500).json({ error: "Failed to sync user" });
   }
 };
+
+export default syncUser;
