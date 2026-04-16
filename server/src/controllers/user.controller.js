@@ -4,7 +4,7 @@ import prisma from "../config/db.js";
 export const syncUser = async (req, res) => {
   try {
     const { userId } = getAuth(req);
-    const { email, fullName, hasImage, imageId } = req.body;
+    const { email, fullName, hasImage, imageUrl } = req.body;
 
     // console.log("Syncing user with ID:", userId, "and email:", email);
 

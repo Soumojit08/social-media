@@ -14,24 +14,56 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(uuid())
+  id        String   @id
   email     String   @unique
   name      String?
-  posts     Post[]
-  createdAt DateTime @default(now())
   hasImage  Boolean  @default(false)
   imageUrl  String?
   bio       String?
-  following User[]
-  followers User[]
+  posts     Post[]
+  likes     Like[]
+  comments  Comment[]
+  following Follow[]  @relation("following")
+  followers Follow[]  @relation("followers")
+  createdAt DateTime @default(now())
 }
 
 model Post {
   id        String   @id @default(uuid())
-  title     String
   content   String?
-  author    User     @relation(fields: [authorId], references: [id])
+  author    User @relation(fields: [authorId], references: [id])
   authorId  String
   createdAt DateTime @default(now())
+  likes     Like[]
+  comments  Comment[]
 }
 
+model Follow {
+  followerId  String 
+  followingId String 
+  follower    User   @relation("followers", fields: [followerId], references: [id])
+  following   User   @relation("following", fields: [followingId], references: [id])
+
+  @@unique([followerId, followingId])
+}
+
+model Like {
+  userId String
+  postId String
+  user   User   @relation(fields: [userId], references: [id])
+  post   Post   @relation(fields: [postId], references: [id])
+
+  @@unique([userId, postId])
+}
+
+model Comment {
+  id String @id @default(uuid())
+  content String
+  createdAt DateTime @default(now())
+  
+  userId String
+  postId String
+  user   User   @relation(fields: [userId], references: [id])
+  post   Post   @relation(fields: [postId], references: [id])
+
+}
