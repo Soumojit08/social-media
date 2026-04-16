@@ -1,6 +1,6 @@
 import axios from "axios";
 
-export const axiosInstance = (getToken) => {
+const axiosInstance = (getToken) => {
   const instance = axios.create({
     baseURL: import.meta.env.VITE_BACKEND_URL,
   });
@@ -17,3 +17,5 @@ export const axiosInstance = (getToken) => {
 
   return instance;
 };
+
+export default axiosInstance;

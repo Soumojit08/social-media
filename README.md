@@ -235,6 +235,23 @@ Request → Route → Middleware → Controller → Service → Prisma/Redis →
 
 ---
 
+## Auth Flow
+Frontend (React + Clerk):
+  ↓ 
+  useAuth() hook gets token
+  ↓
+  Interceptor adds "Authorization: Bearer {token}" header
+  ↓
+Backend (Express + Clerk):
+  ↓
+  clerkMiddleware() validates token (runs globally)
+  ↓
+  protect middleware runs requireAuth() (ensures user is authenticated)
+  ↓
+  getAuth(req) extracts userId from validated token
+  ↓
+  Use userId in your logic
+
 ## Useful Commands
 
 ```bash

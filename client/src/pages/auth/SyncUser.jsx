@@ -1,4 +1,4 @@
-import axiosInstance from "@/utils/axios";
+import { useAxios } from "@/hooks/useAxios";
 import { useAuth, useUser } from "@clerk/react";
 import { useEffect, useRef } from "react";
 
@@ -6,6 +6,7 @@ const SyncUser = () => {
   const hasSyncedRef = useRef(false);
   const { getToken } = useAuth();
   const { user } = useUser();
+  const axiosInstance = useAxios();
 
   useEffect(() => {
     if (!user || hasSyncedRef.current) return;
@@ -18,7 +19,7 @@ const SyncUser = () => {
       });
     };
     sync();
-  }, [user, getToken]);
+  }, [user, getToken, axiosInstance]);
 
   return null;
 };
