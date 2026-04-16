@@ -19,6 +19,8 @@ model User {
   name      String?
   posts     Post[]
   createdAt DateTime @default(now())
+  hasImage  Boolean  @default(false)
+  imageId   String?
 }
 
 model Post {
