@@ -20,7 +20,10 @@ model User {
   posts     Post[]
   createdAt DateTime @default(now())
   hasImage  Boolean  @default(false)
-  imageId   String?
+  imageUrl  String?
+  bio       String?
+  following User[]
+  followers User[]
 }
 
 model Post {

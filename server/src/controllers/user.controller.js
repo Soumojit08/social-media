@@ -25,7 +25,7 @@ export const syncUser = async (req, res) => {
           email,
           name: fullName || "Name Not Found",
           hasImage,
-          imageId,
+          imageUrl,
         },
       });
     }
