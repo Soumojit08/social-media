@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import Orb from "@/components/shared/Orb";
 import { ArrowRight } from "lucide-react";
+import { Show, SignInButton } from "@clerk/react";
 
 const Home = () => {
   return (
@@ -39,12 +40,24 @@ const Home = () => {
           similique provident placeat? Asperiores necessitatibus enim
         </p>
         <div className="flex items-center justify-center gap-2 mt-4">
-          <Button variant="default" size="hero">
-            Get Started
-            <span>
-              <ArrowRight />
-            </span>
-          </Button>
+          <Show when="signed-out">
+            <SignInButton mode="modal">
+              <Button variant="default" size="hero">
+                Get Started
+                <span>
+                  <ArrowRight />
+                </span>
+              </Button>
+            </SignInButton>
+          </Show>
+          <Show when="signed-in">
+            <Button variant="default" size="hero">
+              Explore Now
+              <span>
+                <ArrowRight />
+              </span>
+            </Button>
+          </Show>
           <Button variant="outline" size="hero">
             Learn More
           </Button>
