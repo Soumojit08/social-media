@@ -5,7 +5,7 @@ import SyncUser from "./pages/auth/SyncUser";
 
 const App = () => {
   return (
-    <div>
+    <div className="overflow-x-hidden">
       <SyncUser />
       <Navbar />
       <Routes>

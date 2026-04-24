@@ -26,13 +26,13 @@ const Home = () => {
       </div>
 
       <section className="hero-section flex flex-col items-center space-y-1 font-sans absolute">
-        <h1 className="text-8xl capitalize tracking-tight">
+        <h1 className="text-5xl capitalize tracking-tight md:text-8xl lg:text-9xl">
           Explore the world
         </h1>
-        <h2 className="text-6xl capitalize tracking-tight">
+        <h2 className="text-3xl capitalize tracking-tight md:text-6xl lg:text-7xl">
           Beyond your imagination
         </h2>
-        <p className="text-sm text-muted-foreground w-1/2 px-6">
+        <p className="text-sm text-muted-foreground w-4/5 px-6 text-center md:w-2/3 lg:w-2/3 md:text-base lg:text-base">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Facere
           laboriosam est a, consequuntur, voluptatum facilis doloremque aut
           quibusdam asperiores libero unde corporis minima? Molestias impedit
