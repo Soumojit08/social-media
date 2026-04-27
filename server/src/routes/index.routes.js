@@ -1,6 +1,6 @@
 import express from "express";
-import { protect } from "../middlewares/auth.middleware";
-import { postController } from "../controllers/index.post.controller";
+import { protect } from "../middlewares/auth.middleware.js";
+import { postController } from "../controllers/index.post.controller.js";
 
 const router = express.Router();
 
@@ -11,5 +11,7 @@ router.get("/health", (req, res) => {
 
 //Post Routes
 router.post("/create-post", protect, postController.CreatePost);
+router.delete("/delete-post/:id", protect, postController.DeletePost);
+router.patch("/update-post/:id", protect, postController.UpdatePost);
 
 export default router;

@@ -1,3 +1,3 @@
-const createPost = async (req, res) => {};
+const createPostController = async (req, res) => {};
 
-export default createPost;
+export default createPostController;
