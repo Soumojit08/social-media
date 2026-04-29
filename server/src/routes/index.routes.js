@@ -10,7 +10,7 @@ router.get("/health", (req, res) => {
 });
 
 //Post Routes
-router.get("/get-posts", postController.GetPosts);
+router.get("/get-posts", postController.GetPost);
 router.post("/create-post", protect, postController.CreatePost);
 router.delete("/delete-post/:id", protect, postController.DeletePost);
 router.patch("/update-post/:id", protect, postController.UpdatePost);
