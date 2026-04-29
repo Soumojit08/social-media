@@ -31,29 +31,34 @@ model User {
 model Post {
   id        String   @id @default(uuid())
   content   Content[]
+  caption   String   @default("")
   author    User @relation(fields: [authorId], references: [id])
   authorId  String
   createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   likes     Like[]
   comments  Comment[]
 }
 
 model Content {
   id      String @id @default(uuid())
-  body    String
-  image   String @default("")
-  video   String @default("")
-  url     String
   postId  String
-  caption String @default("")
-  post    Post   @relation(fields: [postId], references: [id])
+  post    Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
+  url     String // actual url cloudinary url/s3 url
+  type    MediaType // "image" or "video"
+  order   Int    // to maintain the order of media in a post
+}
+
+enum MediaType {
+  IMAGE
+  VIDEO
 }
 
 model Follow {
   followerId  String 
   followingId String 
-  follower    User   @relation("followers", fields: [followerId], references: [id])
-  following   User   @relation("following", fields: [followingId], references: [id])
+  follower    User   @relation("followers", fields: [followerId], references: [id] , onDelete: Cascade)
+  following   User   @relation("following", fields: [followingId], references: [id], onDelete: Cascade)
 
   @@unique([followerId, followingId])
 }
@@ -62,9 +67,10 @@ model Like {
   userId String
   postId String
   user   User   @relation(fields: [userId], references: [id])
-  post   Post   @relation(fields: [postId], references: [id])
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
 
   @@unique([userId, postId])
+  @@id([userId, postId]) // Composite primary key to ensure a user can like a post only once
 }
 
 model Comment {
@@ -75,6 +81,6 @@ model Comment {
   userId String
   postId String
   user   User   @relation(fields: [userId], references: [id])
-  post   Post   @relation(fields: [postId], references: [id])
+  post   Post   @relation(fields: [postId], references: [id], onDelete: Cascade)
 
 }
