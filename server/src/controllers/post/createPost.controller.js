@@ -1,23 +1,17 @@
-import prisma from "../../config/db.js";
-import { postIdService } from "../../services/post.service.js";
+import { createPost } from "../../services/post.service.js";
 
 const createPostController = async (req, res) => {
   try {
-    const { mediaUrl, caption, noOfFiles } = req.body;
-    const userId = req.auth.userId;
+    const caption = req.body.caption ?? "";
+    const authorId = req.auth.userId;
 
-    let post = await prisma.post.create({
-      data: {
-        caption,
-        authorId: userId,
-        createdAt: new Date(),
-        content: {
-          url: mediaUrl,
-          type: "image" || "video", //take from multer file type
-          order: noOfFiles,
-        },
-      },
-    });
+    const mediaFiles = req.files.map((file, index) => ({
+      url: file.path, // Cloudinary URL
+      type: file.mimetype.startsWith("video/") ? "VIDEO" : "IMAGE",
+      order: index,
+    }));
+
+    const post = await createPost(authorId, caption, mediaFiles);
 
     res.status(201).json({ message: "Post created successfully", post });
   } catch (error) {
