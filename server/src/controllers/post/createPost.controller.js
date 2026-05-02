@@ -11,11 +11,9 @@ const createPostController = async (req, res) => {
         caption,
         authorId: userId,
         createdAt: new Date(),
-        likes: 0,
-        comments: 0,
         content: {
           url: mediaUrl,
-          type: "image" || "video",
+          type: "image" || "video", //take from multer file type
           order: noOfFiles,
         },
       },
