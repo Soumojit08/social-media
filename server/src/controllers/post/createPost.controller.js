@@ -5,7 +5,6 @@ const createPostController = async (req, res) => {
   try {
     const { mediaUrl, caption, noOfFiles } = req.body;
     const userId = req.auth.userId;
-    const postId = postIdService();
 
     let post = await prisma.post.create({
       data: {
@@ -15,7 +14,6 @@ const createPostController = async (req, res) => {
         likes: 0,
         comments: 0,
         content: {
-          postId: postId,
           url: mediaUrl,
           type: "image" || "video",
           order: noOfFiles,
