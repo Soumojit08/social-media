@@ -2,8 +2,15 @@ import { Button } from "@/components/ui/button";
 import Orb from "@/components/shared/Orb";
 import { ArrowRight } from "lucide-react";
 import { Show, SignInButton } from "@clerk/react";
+import { useNavigate } from "react-router-dom";
 
 const Home = () => {
+  const navigate = useNavigate();
+
+  const handleExplore = () => {
+    navigate("/feed");
+  };
+
   return (
     <div className="min-h-screen top-0 left-0 w-full flex flex-col items-center justify-center">
       <div
@@ -51,7 +58,7 @@ const Home = () => {
             </SignInButton>
           </Show>
           <Show when="signed-in">
-            <Button variant="default" size="hero">
+            <Button variant="default" size="hero" onClick={handleExplore}>
               Explore Now
               <span>
                 <ArrowRight />
