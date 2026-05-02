@@ -1,4 +1,4 @@
-import { Show, SignInButton, SignUpButton, UserButton } from "@clerk/react";
+import { Show, SignInButton, UserButton } from "@clerk/react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "../shared/mode-toggle";
 

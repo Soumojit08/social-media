@@ -13,7 +13,6 @@ const SyncUser = () => {
 
     const sync = async () => {
       if (!user) return;
-
       // console.log("User data", user);
 
       await axiosInstance.post("/user/sync", {
