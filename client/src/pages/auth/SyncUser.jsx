@@ -13,14 +13,22 @@ const SyncUser = () => {
 
     const sync = async () => {
       if (!user) return;
-      // console.log("User data", user);
+      try {
+        const token = await getToken();
+        console.log("User data", user);
+        console.log("token", token);
 
-      await axiosInstance.post("/user/sync", {
-        email: user.emailAddresses[0].emailAddress,
-        fullName: user.fullName,
-        hasImage: user.hasImage,
-        imageUrl: user.imageUrl,
-      });
+        await axiosInstance.post("/user/sync", {
+          email: user.emailAddresses[0].emailAddress,
+          fullName: user.fullName,
+          hasImage: user.hasImage,
+          imageUrl: user.imageUrl,
+        });
+
+        hasSyncedRef.current = true;
+      } catch (error) {
+        console.error("Error syncing user:", error);
+      }
     };
     sync();
   }, [user, getToken, axiosInstance]);
