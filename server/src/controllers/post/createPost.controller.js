@@ -5,7 +5,8 @@ const createPostController = async (req, res) => {
     const caption = req.body.caption ?? "";
     const authorId = req.auth.userId;
 
-    const mediaFiles = req.files.map((file, index) => ({
+    const files = req.files || (req.file ? [req.file] : []);
+    const mediaFiles = files.map((file, index) => ({
       url: file.path, // Cloudinary URL
       type: file.mimetype.startsWith("video/") ? "VIDEO" : "IMAGE",
       order: index,

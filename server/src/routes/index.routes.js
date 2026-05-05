@@ -13,21 +13,12 @@ router.get("/health", (req, res) => {
 //Post Routes
 router.get("/get-posts", postController.GetPost);
 
-//single
-router.post(
-  "/create-post",
-  protect,
-  upload.single("media"),
-  postController.CreatePost,
-);
-//multiple
 router.post(
   "/create-post",
   protect,
   upload.array("media"),
   postController.CreatePost,
 );
-
 
 router.delete("/delete-post/:id", protect, postController.DeletePost);
 router.patch("/update-post/:id", protect, postController.UpdatePost);
