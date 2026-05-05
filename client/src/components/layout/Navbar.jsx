@@ -1,12 +1,15 @@
 import { Show, SignInButton, UserButton } from "@clerk/react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "../shared/mode-toggle";
+import { Link } from "react-router-dom";
 
 const Navbar = () => {
   return (
     <header>
       <nav className="fixed top-0 inset-x-0.5 flex items-center justify-between py-3 px-6 border-b border-border">
-        <h1 className="Logo tracking-wider font-sans text-xl">Societ</h1>
+        <Link to="/">
+          <h1 className="Logo tracking-wider font-sans text-xl">Societ</h1>
+        </Link>
 
         <div className="flex items-center justify-evenly gap-3">
           <ModeToggle />
