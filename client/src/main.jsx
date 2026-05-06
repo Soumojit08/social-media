@@ -10,6 +10,7 @@ import { ThemeProvider } from "./components/theme-provider";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <ClerkProvider
+      publishableKey={import.meta.env.VITE_CLERK_PUBLISHABLE_KEY}
       appearance={{
         theme: dark,
       }}
