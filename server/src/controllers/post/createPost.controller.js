@@ -1,9 +1,10 @@
+import { getAuth } from "@clerk/express";
 import { createPost } from "../../services/post.service.js";
 
 const createPostController = async (req, res) => {
   try {
     const caption = req.body.caption ?? "";
-    const authorId = req.auth.userId;
+    const { userId: authorId } = getAuth(req);
 
     const files = req.files || (req.file ? [req.file] : []);
     const mediaFiles = files.map((file, index) => ({

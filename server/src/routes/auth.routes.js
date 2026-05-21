@@ -1,5 +1,5 @@
 import express from "express";
-import { requireAuth } from "@clerk/express";
+import { requireAuth, getAuth } from "@clerk/express";
 
 const router = express.Router();
 
@@ -11,7 +11,7 @@ router.get("/auth-health", (req, res) => {
 router.get("/verify-token", requireAuth(), (req, res) => {
   res.status(200).json({
     message: "Token is valid",
-    auth: req.auth,
+    auth: getAuth(req),
     authorizationHeader: req.headers.authorization,
   });
 });
